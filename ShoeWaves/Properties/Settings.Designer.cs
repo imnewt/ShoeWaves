@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoeWaves.Properties
+namespace Doann.Properties
 {
 
 

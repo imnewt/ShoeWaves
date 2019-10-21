@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{99CC99D1-BB4B-4A72-8C2E-98AD04C38A6A}</ProjectGuid>
+    <ProjectGuid>{49D55767-098F-4981-827F-51988CEF845D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ShoeWaves</RootNamespace>
-    <AssemblyName>ShoeWaves</AssemblyName>
+    <RootNamespace>Doann</RootNamespace>
+    <AssemblyName>Doann</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,14 +55,77 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Entities\CHECKIN.cs" />
+    <Compile Include="Entities\dbContext.cs" />
+    <Compile Include="Entities\GIAY.cs" />
+    <Compile Include="Entities\HOADON.cs" />
+    <Compile Include="Entities\NHANVIEN.cs" />
+    <Compile Include="frmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmMenu.Designer.cs">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBill.Designer.cs">
+      <DependentUpon>frmBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBillManageMent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBillManageMent.Designer.cs">
+      <DependentUpon>frmBillManageMent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogIn.Designer.cs">
+      <DependentUpon>frmLogIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNotes.Designer.cs">
+      <DependentUpon>frmNotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmStaff.Designer.cs">
+      <DependentUpon>frmStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWareHouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWareHouse.Designer.cs">
+      <DependentUpon>frmWareHouse.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Utils.cs" />
+    <EmbeddedResource Include="frmMenu.resx">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBill.resx">
+      <DependentUpon>frmBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBillManageMent.resx">
+      <DependentUpon>frmBillManageMent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogIn.resx">
+      <DependentUpon>frmLogIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNotes.resx">
+      <DependentUpon>frmNotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmStaff.resx">
+      <DependentUpon>frmStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWareHouse.resx">
+      <DependentUpon>frmWareHouse.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,7 +134,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -75,6 +149,192 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%288%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2810%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%289%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%287%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2812%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2811%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%283%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%285%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%284%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%286%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%283%291.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%287%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%289%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%288%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2810%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2811%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2812%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2813%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2814%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2815%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%287%291.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2812%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2812%292.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2811%291.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2817%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2818%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2819%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2812%291.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2820%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2812%292.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logogogogogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imageedit_1_7778108578.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2821%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2822%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2826%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2812%293.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2825%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logogogogogo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imageedit_1_77781085781.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2827%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2829%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2830%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2832%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2831%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2833%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2834%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2834%291.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2835%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2836%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logogogogogo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imageedit_1_77781085782.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2812%294.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2831%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo%2836%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\72852402_555806741889499_108080717405093888_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo3.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
